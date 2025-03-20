@@ -49,7 +49,7 @@ const PostPage = () => {
         </button>}
         {isAuthor && <DeletePost postId={postInfo._id} />}
         <img
-          src={`http://localhost:8800/${postInfo.cover}`}
+          src={`https://blog-app-d760.onrender.com/${postInfo.cover}`}
           alt=""
           className="h-[250px] m-auto mb-6 mt-6 rounded"
         />

@@ -10,7 +10,7 @@ const Home = () => {
 
   const fetchUserProfile = async () => {
     try {
-      const response = await fetch("http://localhost:8800/profile", {
+      const response = await fetch("https://blog-app-d760.onrender.com/profile", {
         credentials: "include",
       });
 

@@ -7,7 +7,7 @@ const DeletePost = ({ postId }) => {
 
   const handleDelete = async () => {
     if (window.confirm("Are you sure you want to delete this post?")) {
-      const response = await fetch(`http://localhost:8800/post/${postId}`, {
+      const response = await fetch(`https://blog-app-d760.onrender.com/post/${postId}`, {
         method: 'DELETE',
         credentials: 'include', // Include cookies (JWT token)
       });

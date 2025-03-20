@@ -8,7 +8,7 @@ const Header = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:8800/profile", {
+    fetch("https://blog-app-d760.onrender.com/profile", {
       credentials: "include",
     })
       .then((response) => {
@@ -24,7 +24,7 @@ const Header = () => {
   const logout = async () => {
     try {
       // Send the logout request to the server
-      const response = await fetch("http://localhost:8800/logout", {
+      const response = await fetch("https://blog-app-d760.onrender.com/logout", {
         credentials: "include",
         method: "POST",
       });

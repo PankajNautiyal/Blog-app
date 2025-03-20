@@ -11,7 +11,7 @@ const Post = ({ _id, title, summary, cover, content, createdAt, author }) => {
       <div className="w-full lg:w-1/2 h-[200px] mb-4 lg:mb-0 lg:px-10">
         <Link to={`/post/${_id}`}>
           <img
-            src={`http://localhost:8800/${cover}`}
+            src={`https://blog-app-d760.onrender.com/${cover}`}
             alt=""
             className="w-full h-full object-cover rounded-md"
           />
