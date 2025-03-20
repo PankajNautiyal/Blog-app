@@ -68,7 +68,11 @@ app.post('/login', async (req, res) => {
             //logged in
             jwt.sign({ username, id: user._id }, secret, { expiresIn: '1h' }, (error, token) => {
                 if (error) throw error
-                res.cookie('token', token, { httpOnly: true }).json({
+                res.cookie('token', token, {
+                    httpOnly: true, SameSite: 'None',
+                    Secure: true,
+                }).json({
+
                     id: user._id,
                     username
                 })
@@ -84,6 +88,9 @@ app.post('/login', async (req, res) => {
 
 app.get('/profile', async (req, res) => {
     const { token } = req.cookies;
+    if (!token) {
+        return res.status(401).json({ message: 'Token is missing' });
+      }
     try {
         const info = await jwt.verify(token, secret);
         res.json(info);
