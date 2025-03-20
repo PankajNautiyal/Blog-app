@@ -29,7 +29,7 @@ const Home = () => {
   useEffect(() => {
     fetchUserProfile()
     if (userInfo) {
-      fetch('http://localhost:8800/post')
+      fetch('https://blog-app-d760.onrender.com/post')
         .then(response => response.json())
         .then(posts => {
           setPosts(posts);

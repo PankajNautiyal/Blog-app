@@ -23,7 +23,7 @@ const PostPage = () => {
   }, []);
 
   useEffect(() => {
-    fetch(`http://localhost:8800/post/${id}`).then((response) => {
+    fetch(`https://blog-app-d760.onrender.com/post/${id}`).then((response) => {
       response.json().then((postInfo) => {
         setPostInfo(postInfo);
       });

@@ -36,7 +36,7 @@ const EditPost = () => {
   
       e.preventDefault();
       console.log(files);
-      const response = await fetch("http://localhost:8800/post", {
+      const response = await fetch("https://blog-app-d760.onrender.com/post", {
         method: "PUT",
         body: data,
         credentials:"include"
