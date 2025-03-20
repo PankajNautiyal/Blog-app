@@ -14,7 +14,7 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 
 const app = express()
-app.use(cors({ credentials: true, origin: 'http://localhost:5174' }))
+app.use(cors({ credentials: true, origin: 'https://blog-app-1-gcux.onrender.com' }))
 app.use(express.json())
 app.use(cookieParser())
 
