@@ -10,7 +10,7 @@ const PostPage = () => {
 
   // Fetch the logged-in user's information
   useEffect(() => {
-    fetch("http://localhost:8800/profile", {
+    fetch("https://blog-app-d760.onrender.com/profile", {
       credentials: "include",
     })
       .then((response) => response.json())
