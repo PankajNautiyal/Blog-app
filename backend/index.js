@@ -88,20 +88,24 @@ app.post('/login', async (req, res) => {
 
 app.get('/profile', async (req, res) => {
     const { token } = req.cookies;
+    console.log('Token from cookies:', token); // Debug log to see token
+    
     if (!token) {
-        return res.status(401).json({ message: 'Token is missing' });
-      }
-    try {
-        const info = await jwt.verify(token, secret);
-        res.json(info);
-    } catch (error) {
-        console.error('Token verification error:', error);
-        res.status(401).json({ message: 'Token verification failed. Please log in again.' })
+      return res.status(401).json({ message: 'Token is missing' });
     }
-})
+  
+    try {
+      const info = jwt.verify(token, secret);
+      console.log('User Info:', info); // Debug log to verify token verification
+      res.json(info);
+    } catch (error) {
+      console.error('Token verification error:', error);
+      res.status(401).json({ message: 'Token verification failed. Please log in again.' });
+    }
+  });
 
 app.post('/logout', (req, res) => {
-    res.cookie('token', '').json('ok')
+    res.cookie('token', '', { expires: new Date(0) }).json('ok');
 })
 
 app.post('/post', uploadMiddleware.single('file'), async (req, res) => {
@@ -234,16 +238,15 @@ app.delete('/post/:id', async (req, res) => {
 
 
 
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
     console.log(`Server is running on Port: ${PORT}`)
     try {
-        mongoose.connect(MONGO_URL).then(() => {
-            console.log('Connected to MongoDB')
-        })
-
+        await mongoose.connect(MONGO_URL);
+        console.log('Connected to MongoDB');
     } catch (error) {
-        console.log('Error connecting to MongoDB')
-
+        console.error('Error connecting to MongoDB', error);
+        res.status(500).json({ message: 'Database connection failed' });
     }
+
 })
 

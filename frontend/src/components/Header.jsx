@@ -8,18 +8,27 @@ const Header = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("https://blog-app-d760.onrender.com/profile", {
-      credentials: "include",
-    })
-      .then((response) => {
-        response.json().then((userInfo) => {
-          setUserInfo(userInfo);
+    const fetchUserProfile = async () => {
+      try {
+        const response = await fetch("https://blog-app-d760.onrender.com/profile", {
+          method: 'GET',
+          credentials: "include",
         });
-      })
-      .catch((error) => {
+  
+        if (!response.ok) {
+          throw new Error('Failed to fetch user profile');
+        }
+  
+        const userInfo = await response.json();
+        setUserInfo(userInfo);
+      } catch (error) {
         console.log(error.message);
-      });
+      }
+    };
+  
+    fetchUserProfile();
   }, []);
+  
 
   const logout = async () => {
     try {
